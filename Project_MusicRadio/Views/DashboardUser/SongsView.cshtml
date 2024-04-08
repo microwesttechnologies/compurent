@@ -1,0 +1,68 @@
+﻿@model List<Project_MusicRadio.Models.Song>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SongsView</title>
+    <link href="~/css/dashboarduser.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link href="~/css/viewsong.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+</head>
+<body>
+    <div class="content-dash animate__animated animate__fadeInLeft">
+
+    
+    @foreach (var song in Model.Take(1))
+    {
+        <h4>Lista de canciones del album<strong>@song.NameAlbum</strong></h4>
+    }
+
+                    <table class="table table-hover shopping-cart-wrap">
+                        <thead class="text-muted">
+                            <tr>
+                                <th scope="col">N°</th>
+                                <th scope="col" width="180">Song</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            @{
+                var index = 1;
+            }
+                            @foreach (var song in Model)
+                            {
+                                <tr>
+                    <td>
+                        <h>@index</h>
+                        @{
+                            index++;
+                        }
+                    </td>
+                                    <td>
+                                        <dl class="param param-inline small">
+                                            <dt>@song.NameSong</dt>
+                                            <dd>@song.NameAlbum </dd>
+                                        </dl>
+                                    </td>
+
+                                    <td class="text-right">
+                                        <a title="" href="" class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist"> <i class="fa fa-heart"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+    <a class="btn btn-outline-info mt-5" href="@Url.Action("DashboardUser", "DashboardUser")">Salir</a>
+    </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

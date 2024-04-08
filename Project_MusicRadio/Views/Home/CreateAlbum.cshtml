@@ -1,0 +1,51 @@
+﻿@model Project_MusicRadio.Models.Album
+
+@{
+    ViewData["Title"] = "Create Album";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DashboardUser</title>
+    <link href="~/css/dashboarduser.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+</head>
+<body class="animate__animated animate__fadeIn">
+<h1>Crear Album</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="NameAlbum">Nombre:</label>
+        <input type="text" class="form-control" id="NameAlbum" name="NameAlbum" required>
+    </div>
+    <div class="form-group">
+        <label for="MusicBand">Banda musical:</label>
+        <input type="text" class="form-control" id="MusicBand" name="MusicBand" required>
+    </div>
+    <div class="form-group">
+        <label for="ReleaseYear">Año de lanzamiento:</label>
+        <input type="text" class="form-control" id="ReleaseYear" name="ReleaseYear" required>
+    </div>
+    <div class="form-group">
+        <label for="ImageAlbum">Url de la imagen de portada:</label>
+        <input type="text" class="form-control" id="ImageAlbum" name="ImageAlbum" required>
+    </div>
+        <div class="flex-row mt-4 ">
+
+    <button type="submit" class="btn btn-info ">Crear album</button>
+    <a href="@Url.Action("Dashboard", "Home")" class="btn btn-danger">Cancelar</a>
+    </div>
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert @((bool)ViewBag.Success ? "alert-success" : "alert-danger") mt-3" role="alert">
+        @ViewBag.Message
+    </div>
+}
+</body>
+</html>

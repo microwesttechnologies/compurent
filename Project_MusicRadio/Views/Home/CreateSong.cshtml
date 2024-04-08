@@ -1,0 +1,48 @@
+﻿@model Project_MusicRadio.Models.Song
+
+@{
+    ViewData["Title"] = "Crear Canción";
+}
+
+<h2>Agregar Canción</h2>
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Agregar cancion</title>
+    <link href="~/css/dashboarduser.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+<body class="animate__animated animate__fadeIn">
+<form method="post">
+    <div class="form-group mb-4">
+        <label for="NameSong">Nombre de la Canción:</label>
+        <input type="text" class="form-control" id="NameSong" name="NameSong" required>
+    </div>
+    <input type="hidden" value="@ViewBag.AlbumId" id="AlbumId" name="AlbumId" required>
+        <div class="flex-row mt-4 ">
+
+            <button type="submit" class="btn btn-info ">Agregar canción</button>
+            <a href="@Url.Action("Dashboard", "Home")" class="btn btn-danger">Cancelar</a>
+        </div>
+</form>
+</body>
+</html>
+

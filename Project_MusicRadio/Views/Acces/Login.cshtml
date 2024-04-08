@@ -1,0 +1,60 @@
+﻿@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Inicio de sesion</title>
+	<link href="~/css/login.css" rel="stylesheet" />
+	<link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+<body>
+	<div class="container animate__animated animate__fadeIn">
+		<div class="d-flex justify-content-center h-100">
+			<div class="card animate__animated animate__fadeIn">
+				<div class="card-body">
+					<h3>Inicio de sesion</h3>
+					<form action="@Url.Action("Login", "Acces")" method="post">
+						<div class="input-group form-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							<input type="text" name="Mail" class="form-control" placeholder="Correo electronico">
+
+						</div>
+						<div class="input-group form-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<input type="password" name="PassUser" class="form-control" placeholder="Contraseña">
+						</div>
+
+						@if (ViewData["Message"] != null)
+						{
+							
+						<div class="alert alert-danger" role="alert">
+								@ViewData["Message"]
+					</div>
+						}
+						
+					<div class="form-group">
+							<input type="submit" value="Login" class="btn float-right login_btn">
+						</div>
+					</form>
+					<div class="d-flex justify-content-center links">
+						¿No tienes una cuenta?<a href="@Url.Action("Register", "Acces")">Registrate</a>
+					</div>
+				</div>
+				<div class="card-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

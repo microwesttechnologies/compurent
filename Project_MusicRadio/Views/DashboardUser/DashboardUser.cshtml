@@ -1,0 +1,111 @@
+﻿@model List<Project_MusicRadio.Models.Album>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DashboardUser</title>
+    <link href="~/css/dashboardUser.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+</head>
+<body class="body-content">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand"><strong>Music</strong> | Radio </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Acces" asp-action="login">Iniciar sesion</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container animate__animated animate__fadeInUp">
+            <div class="input-group mb-3">
+            <input type="text" class="form-control" id="keywordInput" placeholder="Buscar por palabra clave" aria-label="Buscar por palabra clave" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="button" id="searchButton">Buscar</button>
+
+            </div>
+        <div class="card ">
+            <table class="table table-hover shopping-cart-wrap">
+                <thead class="text-muted">
+                    <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col" width="180">Quantity</th>
+                        <th scope="col" width="300" class="text-right">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var album in Model)
+                    {
+                        <tr class="album">
+                            <td>
+                                <figure class="media">
+                                    <div class="img-wrap"><img src="@album.ImageAlbum" class="img-thumbnail img-sm"></div>
+                                    <figcaption class="media-body">
+                                        <h6 class="title text-truncate">@album.NameAlbum</h6>
+                                        <dl class="param param-inline small">
+                                            <dt>Band Song: </dt>
+                                            <dd>@album.MusicBand</dd>
+                                        </dl>
+                                        <dl class="param param-inline small">
+                                            <dt>Year: </dt>
+                                            <dd>@album.ReleaseYear</dd>
+                                        </dl>
+                                    </figcaption>
+                                </figure>
+                            </td>
+                            <td>
+                                <select class="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </td>
+                            <td class="text-right">
+                                <a title="" href="" class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist"> <i class="fa fa-heart"></i></a>
+                                <a href="@Url.Action("SongsView", "DashboardUser", new { idAlbum = album.IdAlbum })" class="btn btn-outline-info" data-toggle="modal" data-target="#songModal">View Songs</a>
+                                <a href="" class="btn btn-outline-success">  Purchase</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        document.getElementById("keywordInput").addEventListener("input", function () {
+            var keyword = this.value.toLowerCase();
+            var albums = document.querySelectorAll(".album");
+
+            albums.forEach(function (album) {
+                var albumName = album.querySelector(".title").innerText.toLowerCase();
+                if (albumName.includes(keyword)) {
+                    album.style.display = "table-row";
+                } else {
+                    album.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>
